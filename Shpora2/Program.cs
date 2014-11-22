@@ -39,7 +39,7 @@ namespace Shpora2
 				}
 			}
 			List<bool>[] newGen = masks;
-			for (int it = 0; it < 100000; it++)
+			for (int it = 0; it < 1000; it++)
 			{
 				newGen = Inherit(newGen, n);
 			}
@@ -95,7 +95,7 @@ namespace Shpora2
 		{
 			var r = new Random();
 			var res = new List<List<bool>>(mask);
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 50; i++)
 			{
 				int a = r.Next(mask.Length);
 				int b = r.Next(mask.Length);
@@ -104,13 +104,13 @@ namespace Shpora2
 					res.Add(GetXor(mask[a], mask[b]));
 				}
 			}
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 50; i++)
 			{
 				int a = r.Next(res.Count);
 				int bit = r.Next(n);
 				res[a][bit] ^= true;
 			}
-			return res.OrderBy(Fitness).Take(15).ToArray();
+			return res.OrderBy(Fitness).Take(n).ToArray();
 		}
 
 		public static int Fitness(List<bool> lst)
